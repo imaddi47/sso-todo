@@ -1,0 +1,12 @@
+type Query {
+    node(id: ID!, type: TYPE_ENUM_NODE!): Node!
+    nodes(ids: [ID!], type: TYPE_ENUM_NODE): [Node!]
+}
+
+interface Node {
+    id: ID!
+}
+
+enum TYPE_ENUM_NODE {
+    TEST
+}

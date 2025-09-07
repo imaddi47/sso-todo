@@ -3,10 +3,27 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
+    "start": "node src/index.mjs",
+    "dev": "nodemon src/index.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/server": "^5.0.0",
+    "@as-integrations/express5": "^1.1.2",
+    "@graphql-tools/load-files": "^7.0.1",
+    "@graphql-tools/merge": "^9.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "graphql": "^16.11.0",
+    "knex": "^3.1.0",
+    "lodash": "^4.17.21",
+    "nodemon": "^3.1.10",
+    "pg": "^8.16.3"
+  }
 }
