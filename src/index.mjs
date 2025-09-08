@@ -6,6 +6,12 @@ import express from "express";
 import cors from "cors";
 import http from "http";
 
+// middlewares
+import { authorization } from "./middleware/auth.js";
+
+// error handler
+import { rootErrorHandler } from "./error/root.js";
+
 import { typeDefs, resolvers } from "./graphql/index.mjs";
 
 const serverWrapper = async () => {
@@ -25,7 +31,10 @@ const serverWrapper = async () => {
         cors(), 
         express.json()
     );
-    app.use("/graphql", expressMiddleware(server));
+    app.use("/graphql", authorization, expressMiddleware(server));
+    
+    // Error Handler
+    app.use(rootErrorHandler);
 
     // Start Http Server
     await new Promise(resolve => httpServer.listen({ port: process.env.SERVER_PORT}, resolve));
