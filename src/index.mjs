@@ -12,6 +12,7 @@ import { authorization } from "./middleware/auth.js";
 // error handler
 import { rootErrorHandler } from "./error/root.js";
 
+// graphql type definitions
 import { typeDefs, resolvers } from "./graphql/index.mjs";
 
 const serverWrapper = async () => {
@@ -27,6 +28,7 @@ const serverWrapper = async () => {
         ]
     });
     await server.start();
+
     app.use(
         cors(), 
         express.json()
