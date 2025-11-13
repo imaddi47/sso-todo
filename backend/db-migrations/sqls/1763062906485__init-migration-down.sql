@@ -1,0 +1,2 @@
+-- Write your DOWN SQL here
+DROP SCHEMA IF EXISTS todos CASCADE;
