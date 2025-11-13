@@ -9,12 +9,16 @@ services:
       - "5432:5432"
     volumes:
       - db-data:/var/lib/postgresql/data
-  # app:
-  #   build:
-  #     context: ..
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - "3001:3001"
+  app:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+      args:
+        - SERVER_PORT=3001
+    env_file:
+      - ../backend/.env
+    ports:
+      - "3001:3001"
 
 volumes:
   db-data:
