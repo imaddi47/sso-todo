@@ -7,8 +7,8 @@
   "scripts": {
     "start": "node src/index.mjs",
     "dev": "nodemon src/index.mjs",
-    "db:migration:make": "npx knex ",
-    "db:migration:latest:development": "cp .env db-migrations/ && npx knex migrate:latest --knexfile ./db-migrations/knexfile.js --env development",
+    "db:migration:create": "node ./db-migrations/createMigration.js",
+    "db:migration:apply:development": "cp .env db-migrations/ && npx knex migrate:latest --knexfile ./db-migrations/knexfile.js --env development",
     "db:migration:rollback:development": "cp .env db-migrations/ && npx knex migrate:rollback --knexfile ./db-migrations/knexfile.js --env development"
   },
   "keywords": [],
