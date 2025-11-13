@@ -3,15 +3,13 @@ const TYPE_ENUM_NODE = {
 }
 
 const TYPE_ENUM_NODE_RESOLVERS = {
-    TEST: async function () {
-        const { id } = this;
+    TEST: async function (id) {
         return {id, message: `TEST: ${id}!`}
     }
 }
 
 const TYPE_ENUM_NODES_RESOLVERS = {
-    TEST: async function () {
-        const { ids } = this;
+    TEST: async function (ids) {
         return ids.map(id => ({id, message: `TEST: ${id}!`}))
     }
 }
@@ -19,14 +17,14 @@ const TYPE_ENUM_NODES_RESOLVERS = {
 export default {
     Query: {
         node: async (parent, args, ctx, info) => {
-            const returnData = await TYPE_ENUM_NODE_RESOLVERS[args.type].call(args);
+            const returnData = await TYPE_ENUM_NODE_RESOLVERS[args.type](args.id);
             if(returnData) {
                 returnData.nodeType = args.type;
             }
             return returnData;
         },
         nodes: async (parent, args, ctx, info) => {
-            const returnData = (await TYPE_ENUM_NODES_RESOLVERS[args.type].call(args)).map(m => ({...m, nodeType: args.type}));
+            const returnData = (await TYPE_ENUM_NODES_RESOLVERS[args.type](args.ids)).map(m => ({...m, nodeType: args.type}));
             console.log(returnData);
             return returnData;
         }
