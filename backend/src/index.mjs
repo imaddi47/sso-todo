@@ -33,6 +33,14 @@ const serverWrapper = async () => {
         cors(), 
         express.json()
     );
+    app.use(express.urlencoded({ extended: true }));
+    
+    app.use('/health', (req, res) => {
+        console.log('[INFO] Health check OK');
+        res.status(200).send('OK');
+    });
+
+    // Graphql endpoint
     app.use("/graphql", authorization, expressMiddleware(server));
     
     // Error Handler
