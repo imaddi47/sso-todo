@@ -1,4 +1,4 @@
-const TYPE_ENUM_NODE = {
+const GRAPH_TYPE_RESOLVE = {
     TEST: "Test"
 }
 
@@ -31,7 +31,7 @@ export default {
     },
     Node: {
         __resolveType(parent) {
-            return TYPE_ENUM_NODE[parent.nodeType];
+            return GRAPH_TYPE_RESOLVE[parent.nodeType];
         }
     }
 }

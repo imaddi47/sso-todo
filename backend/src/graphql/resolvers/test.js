@@ -6,5 +6,10 @@ export default {
         message: ({ message }) => {
             return message
         }
+    },
+    TestMutation: {
+        testField: () => {
+            return "This is a test field from TestMutation";
+        }
     }
 }
