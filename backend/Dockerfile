@@ -9,4 +9,4 @@ RUN npm ci
 COPY . .
 
 EXPOSE $SERVER_PORT
-ENTRYPOINT ["node", "/app/src/index.mjs"]
+ENTRYPOINT ["npm", "run", "db:migration:apply:development", "&&", "node", "/app/src/index.mjs"]
