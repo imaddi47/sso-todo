@@ -9,6 +9,12 @@ services:
       - "5432:5432"
     volumes:
       - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h localhost"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
   app:
     build:
       context: ../backend
@@ -17,8 +23,13 @@ services:
         - SERVER_PORT=3001
     env_file:
       - ../backend/.env
+    environment:
+     - DB_HOST=postgres
     ports:
       - "3001:3001"
+    depends_on:
+      postgres:
+        condition: service_healthy
 
 volumes:
   db-data:
