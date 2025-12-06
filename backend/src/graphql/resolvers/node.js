@@ -1,5 +1,6 @@
 const GRAPH_TYPE_RESOLVE = {
-    TEST: "Test"
+    TEST: "Test",
+    TODO: "Todo"
 }
 
 const TYPE_ENUM_NODE_RESOLVERS = {

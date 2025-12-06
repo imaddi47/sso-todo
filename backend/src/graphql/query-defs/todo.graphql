@@ -1,0 +1,9 @@
+type Todo implements Node {
+    id: ID!
+    title: String!
+    description: String
+    createdAt: DateTime!
+    isCompleted: Boolean!
+    isDeleted: Boolean!
+    deletedAt: DateTime
+}
