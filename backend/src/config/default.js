@@ -1,8 +1,8 @@
 export default {
     jwtSecret: "SUPER_SECRET",
-    dbConnection: {
+    dbConfig: {
         client: 'pg',
-        searchPath: ['todo', 'public'],
+        searchPath: ['todos', 'public'],
         connection: {
             host: process.env.DB_HOST,
             user: process.env.DB_USER,

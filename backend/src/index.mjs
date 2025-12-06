@@ -5,6 +5,7 @@ import { expressMiddleware } from "@as-integrations/express5";
 import express from "express";
 import cors from "cors";
 import http from "http";
+import db from "./lib/database_connection.js";
 
 // middlewares
 import { authorization } from "./middleware/auth.js";
@@ -41,7 +42,14 @@ const serverWrapper = async () => {
     });
 
     // Graphql endpoint
-    app.use("/graphql", authorization, expressMiddleware(server));
+    app.use("/graphql", authorization, expressMiddleware(server, {
+        context: async ({ req }) => {
+            return {
+                db,
+                user: req.user
+            }
+        }
+    }));
     
     // Error Handler
     app.use(rootErrorHandler);

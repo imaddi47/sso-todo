@@ -14,29 +14,27 @@ export default {
         description: ({ description }) => {
             return description;
         },
-        isCompleted: ({ isCompleted }) => {
-            return isCompleted;
+        isCompleted: ({ is_completed }) => {
+            return is_completed;
         },
-        isDeleted: ({ isDeleted }) => {
-            return isDeleted;
+        isDeleted: ({ is_deleted }) => {
+            return is_deleted;
         },
-        createdAt: ({ createdAt }) => {
-            return createdAt;
+        createdAt: ({ created_at }) => {
+            return created_at;
         }
     },
     TodoMutation: {
-        createTodos: (_, { input }, ctx, info) => {
+        createTodos: async (_, { input }, { db }, info) => {
             console.log(input);
-            return input.map(arg => ({
-                    id: 1,
+            const preparedData = input.map(arg => ({
                     title: arg.title,
-                    description: arg.description,
-                    isCompleted: arg.isCompleted,
-                    isDeleted: false,
-                    isCompleted: false,
-                    createdAt: new Date()
+                    description: arg.description
                 })
             );
+            const data = await db('todos.todo').insert(preparedData).returning('*');
+            console.log(data);
+            return data;
         }
     }
 }
