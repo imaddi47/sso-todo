@@ -1,0 +1,17 @@
+type TodoMutation {
+    createTodos(input: [CreateTodoInput!]): [Todo!]
+    updateTodo(input: UpdateTodoInput!): Todo!
+}
+
+input CreateTodoInput {
+    title: String!
+    description: String
+}
+
+input UpdateTodoInput {
+    id: ID!
+    title: String
+    description: String
+    isCompleted: Boolean
+    isDeleted: Boolean
+}

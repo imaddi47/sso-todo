@@ -6,7 +6,10 @@ const __dirname = path.dirname(__filename);
 import { mergeTypeDefs, mergeResolvers } from '@graphql-tools/merge';
 import { loadFilesSync } from '@graphql-tools/load-files';
 
-const typesArray = [...loadFilesSync(path.join(__dirname, './query-defs/*.graphql')), ...loadFilesSync(path.join(__dirname, './mutation-defs/*.graphql'))];
+const typesArray = [
+    ...loadFilesSync(path.join(__dirname, './query-defs/*.graphql')), 
+    ...loadFilesSync(path.join(__dirname, './mutation-defs/*.graphql'))
+];
 
 const resolverArray = loadFilesSync(path.join(__dirname, "./resolvers/*.js"));
 

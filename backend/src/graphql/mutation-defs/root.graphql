@@ -1,3 +1,4 @@
 type Mutation {
     test: TestMutation!
+    todo: TodoMutation!
 }
